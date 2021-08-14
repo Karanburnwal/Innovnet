@@ -15,17 +15,17 @@ import { useLocation } from "react-router-dom";
 export default function Home() {
   const [posts, setPosts] = useState<any>([]);
   const { search } = useLocation();
-  console.log("search", search);
+  // console.log("search", search);
 
-  const fetchPost = async () => {
-    try {
-      const res = await axios.get("/posts/" + search);
-      setPosts(res);
-    } catch (err) {
-      console.log(err);
-    }
-  };
   useEffect(() => {
+    const fetchPost = async () => {
+      try {
+        const res = await axios.get("/posts/" + search);
+        setPosts(res);
+      } catch (err) {
+        console.log(err);
+      }
+    };
     fetchPost();
   }, [search]);
   return (

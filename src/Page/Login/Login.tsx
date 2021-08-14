@@ -1,12 +1,12 @@
 import axios from "axios";
-import { useContext, useRef } from "react";
+import { useRef } from "react";
 import { UseSessionContext, UseSessionDispatcher } from "../../Context/Context";
 import styles from "./Login.module.css";
 
 export default function Login() {
   const userRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
-  const { user, isFetching } = UseSessionContext();
+  const { user } = UseSessionContext();
   const dispatch = UseSessionDispatcher();
   const handleSubmit = async (e: any) => {
     e.preventDefault();
