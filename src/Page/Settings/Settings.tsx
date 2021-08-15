@@ -3,6 +3,7 @@ import { useState } from "react";
 import { PF } from "../../Component/Post/Post";
 import Sidebar from "../../Component/Sidebar/Sidebar";
 import { UseSessionContext, UseSessionDispatcher } from "../../Context/Context";
+import Endpoints from "../../Services/Endpoints";
 import styles from "./Settings.module.css";
 interface user {
   userId: number;
@@ -35,11 +36,23 @@ export default function Setting() {
       data.append("file", file);
       updatedUser.profile = filename;
       try {
-        await axios.post("/upload", data);
+        // await axios.post("/upload", data);
+        await axios({
+          method: "POST",
+          baseURL: Endpoints.baseUrl,
+          url: Endpoints.upload,
+          data: data,
+        });
       } catch (err) {}
     }
     try {
-      const res = await axios.put("/users/" + user._id, updatedUser);
+      // const res = await axios.put("/users/" + user._id, updatedUser);
+      const res = await axios({
+        method: "PUT",
+        baseURL: Endpoints.baseUrl,
+        url: Endpoints.users + user._id,
+        data: updatedUser,
+      });
       if (res.status === 200) {
         setStatus(true);
       }

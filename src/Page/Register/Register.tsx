@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
+import Endpoints from "../../Services/Endpoints";
 import styles from "./Register.module.css";
 
 export default function Register() {
@@ -11,10 +12,20 @@ export default function Register() {
     e.preventDefault();
     try {
       setError(false);
-      const res = await axios.post("/auth/register", {
-        username,
-        email,
-        password,
+      // const res = await axios.post("/auth/register", {
+      //   username,
+      //   email,
+      //   password,
+      // });
+      const res = await axios({
+        method: "POST",
+        baseURL: Endpoints.baseUrl,
+        url: Endpoints.auth.register,
+        data: {
+          username,
+          email,
+          password,
+        },
       });
       res.data && window.location.replace("/login");
       // console.log(res);

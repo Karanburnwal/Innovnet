@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { UseSessionContext } from "../../Context/Context";
+import Endpoints from "../../Services/Endpoints";
 import styles from "./Write.module.css";
 export default function Write() {
   const [title, setTitle] = useState<string>("");
@@ -22,15 +23,33 @@ export default function Write() {
       data.append("file", file);
       newPost.photo = filename;
       try {
-        await axios.post("/upload", data);
+        // await axios.post("/upload", data);
+        await axios({
+          method: "POST",
+          baseURL: Endpoints.baseUrl,
+          url: Endpoints.upload,
+          data: data,
+        });
       } catch (err) {}
       try {
-        const res = await axios.post("/posts", newPost);
+        // const res = await axios.post("/posts", newPost);
+        const res = await axios({
+          method: "POST",
+          baseURL: Endpoints.baseUrl,
+          url: Endpoints.posts,
+          data: newPost,
+        });
         window.location.replace("/posts/" + res.data._id);
       } catch (err) {}
     }
     try {
-      const res = await axios.post("/posts", newPost);
+      // const res = await axios.post("/posts", newPost);
+      const res = await axios({
+        method: "POST",
+        baseURL: Endpoints.baseUrl,
+        url: Endpoints.posts,
+        data: newPost,
+      });
       window.location.replace("/post" + res.data._id);
     } catch (err) {}
   };

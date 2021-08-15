@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useRef } from "react";
 import { UseSessionContext, UseSessionDispatcher } from "../../Context/Context";
+import Endpoints from "../../Services/Endpoints";
 import styles from "./Login.module.css";
 
 export default function Login() {
@@ -12,9 +13,18 @@ export default function Login() {
     e.preventDefault();
     dispatch({ type: "LOGIN_START" });
     try {
-      const res = await axios.post("/auth/login", {
-        username: userRef.current?.value,
-        password: passwordRef.current?.value,
+      // const res = await axios.post("/auth/login", {
+      //   username: userRef.current?.value,
+      //   password: passwordRef.current?.value,
+      // });
+      const res = await axios({
+        method: "POST",
+        baseURL: Endpoints.baseUrl,
+        url: Endpoints.auth.login,
+        data: {
+          username: userRef.current?.value,
+          password: passwordRef.current?.value,
+        },
       });
       dispatch({ type: "LOGIN_SUCCESS", payload: res.data });
       window.location.replace("/");

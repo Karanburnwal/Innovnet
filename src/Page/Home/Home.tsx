@@ -5,6 +5,7 @@ import Posts from "../../Component/Posts/Posts";
 import styles from "./Home.module.css";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
+import Endpoints from "../../Services/Endpoints";
 // export interface post {
 //   title: string;
 //   desc: string;
@@ -20,7 +21,14 @@ export default function Home() {
   useEffect(() => {
     const fetchPost = async () => {
       try {
-        const res = await axios.get("/posts/" + search);
+        // const res = await axios.get("/posts/" + search);
+        const res = await axios({
+          method: "GET",
+          baseURL: Endpoints.baseUrl,
+          url: Endpoints.posts + search,
+        });
+        console.log(res);
+
         setPosts(res);
       } catch (err) {
         console.log(err);

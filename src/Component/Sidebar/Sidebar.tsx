@@ -1,11 +1,17 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import Endpoints from "../../Services/Endpoints";
 import styles from "./Sidebar.module.css";
 export default function Sidebar() {
   const [cats, setCats] = useState<any>([]);
   const getCats = async () => {
-    const res = await axios.get("/categories");
+    // const res = await axios.get("/categories");
+    const res = await axios({
+      method: "GET",
+      baseURL: Endpoints.baseUrl,
+      url: Endpoints.categories,
+    });
     setCats(res.data);
   };
   useEffect(() => {
