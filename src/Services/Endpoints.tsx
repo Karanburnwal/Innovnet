@@ -1,4 +1,4 @@
-export default {
+const Endpoints = {
   baseUrl: "https://innovnet-backend.herokuapp.com/api/",
   auth: {
     login: "/auth/login",
@@ -10,3 +10,4 @@ export default {
   upload: "/upload/",
   delete: "/delete",
 };
+export default Endpoints;

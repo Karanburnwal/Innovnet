@@ -27,8 +27,6 @@ export default function Home() {
           baseURL: Endpoints.baseUrl,
           url: Endpoints.posts + search,
         });
-        console.log(res);
-
         setPosts(res);
       } catch (err) {
         console.log(err);
