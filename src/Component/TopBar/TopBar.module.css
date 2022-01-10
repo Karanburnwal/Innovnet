@@ -54,3 +54,9 @@
   color: #666;
   margin-left: 15px;
 }
+.messege {
+  font-size: 25px;
+  color: rgb(69, 172, 212);
+  margin-right: 20px;
+  cursor: pointer;
+}

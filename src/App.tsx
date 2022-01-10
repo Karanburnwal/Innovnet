@@ -8,6 +8,7 @@ import Register from "./Page/Register/Register";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import SingleP from "./Page/Single/Single";
 import { UseSessionContext } from "./Context/Context";
+import Messenger from "./Page/Messenger/Messenger";
 function App() {
   const { user } = UseSessionContext();
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="/login" component={user ? Home : Login} />
           <Route path="/write" component={user ? Write : Register} />
           <Route path="/settings" component={user ? Settings : Register} />
+          <Route path="/messenger" component={user ? Messenger : Register} />
           <Route path="/posts/:postId" component={SingleP} />
         </Switch>
       </Router>

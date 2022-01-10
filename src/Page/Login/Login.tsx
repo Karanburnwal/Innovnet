@@ -17,14 +17,15 @@ export default function Login() {
       //   username: userRef.current?.value,
       //   password: passwordRef.current?.value,
       // });
+      const data = {
+        username: userRef.current?.value,
+        password: passwordRef.current?.value,
+      };
       const res = await axios({
         method: "POST",
         baseURL: Endpoints.baseUrl,
         url: Endpoints.auth.login,
-        data: {
-          username: userRef.current?.value,
-          password: passwordRef.current?.value,
-        },
+        data: data,
       });
       dispatch({ type: "LOGIN_SUCCESS", payload: res.data });
       window.location.replace("/");

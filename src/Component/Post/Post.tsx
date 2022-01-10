@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styles from "./Post.module.css";
-export const PF = "https://innovnet-backend.herokuapp.com/images/";
+export const PF = "http://localhost:5000/images/"; //"https://innovnet-backend.herokuapp.com/images/";
 export default function Post({ post }: { post: any }) {
   return (
     <div className={styles.post}>
